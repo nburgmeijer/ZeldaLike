@@ -5649,7 +5649,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Placeholder
+  m_text: Village
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 66a79aca631774c89ad8237bf62c592d, type: 2}
   m_sharedMaterial: {fileID: -7772024807533023403, guid: 66a79aca631774c89ad8237bf62c592d,
@@ -5719,7 +5719,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 940093475}
-    characterCount: 11
+    characterCount: 7
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -5865,7 +5865,6 @@ GameObject:
   - component: {fileID: 1176904467}
   - component: {fileID: 1176904466}
   - component: {fileID: 1176904465}
-  - component: {fileID: 1176904469}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -5953,18 +5952,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!225 &1176904469
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1176904464}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &1440755120
 GameObject:
   m_ObjectHideFlags: 0
@@ -28514,7 +28501,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orderOnce: 0
-  offset: 0
 --- !u!1001 &129968585099571719
 PrefabInstance:
   m_ObjectHideFlags: 0

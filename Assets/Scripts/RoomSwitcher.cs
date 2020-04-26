@@ -11,15 +11,17 @@ public class RoomSwitcher : MonoBehaviour
     public static event BlendingStarted BlendingStartedEvent;
     public delegate void BlendingEnded(Object obj);
     public static event BlendingEnded BlendingEndedEvent;
+   
     #endregion
 
     private void Awake()
     {
         clearShot = GetComponent<CinemachineClearShot>();
     }
-
+    
     private void Update()
     {
+       
         if (clearShot.IsBlending && !InvokeOnceFlag)
         {
             InvokeOnceFlag = true;

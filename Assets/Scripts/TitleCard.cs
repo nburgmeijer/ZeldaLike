@@ -20,7 +20,12 @@ public class TitleCard : MonoBehaviour
         text = GetComponent<TextMeshProUGUI>();
         RoomSwitcher.BlendingStartedEvent += OnBlendingStart;
         canvasRenderer = GetComponent<CanvasRenderer>();
-        Canvas.SetActive(false);
+        canvasRenderer.SetAlpha(0f);
+    }
+
+    private void Start()
+    { 
+        coroutine = StartCoroutine(Show());
     }
 
     private void OnBlendingStart(Object obj)
