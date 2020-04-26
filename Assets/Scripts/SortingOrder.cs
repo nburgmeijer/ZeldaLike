@@ -1,28 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SortingOrder : MonoBehaviour
 {
+    #region Fields
+
     [SerializeField] private bool orderOnce;
-    [SerializeField] private float offset;
-    private int orderBase = 5000;
-    private Renderer renderer;
+    private readonly int orderBase = 5000;
+    private SpriteRenderer spriteRenderer;
     private float timer;
-    private float timeMax = 0.1f;
+    private readonly float timeMax = 0.1f;
+    #endregion
+
     private void Awake()
     {
-        renderer = GetComponent<Renderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
         timer -= Time.deltaTime;
         if(timer < 0f)
-        {
-            
+        {        
             timer = timeMax;
-            renderer.sortingOrder = (int)(orderBase - (transform.position.y)*10 - offset);
+            spriteRenderer.sortingOrder = (int)(orderBase - (transform.position.y) * 10);
             if (orderOnce)
             {
                 Destroy(this);
@@ -30,5 +30,4 @@ public class SortingOrder : MonoBehaviour
         }
         
     }
-
 }
