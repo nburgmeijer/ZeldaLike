@@ -15,8 +15,8 @@ public class PlayerMovement : MonoBehaviour
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        RoomSwitcher.BlendingStartedEvent += OnBlendingStarted;
-        RoomSwitcher.BlendingEndedEvent += OnBlendingStopped;
+        RoomSwitchEvents.BlendingStartedEvent += OnBlendingStarted;
+        RoomSwitchEvents.BlendingEndedEvent += OnBlendingStopped;
     }
 
     private void OnBlendingStarted(Object obj)

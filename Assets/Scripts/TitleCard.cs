@@ -18,7 +18,7 @@ public class TitleCard : MonoBehaviour
     {
         Canvas = transform.parent.gameObject;
         text = GetComponent<TextMeshProUGUI>();
-        RoomSwitcher.BlendingStartedEvent += OnBlendingStart;
+        RoomSwitchEvents.BlendingStartedEvent += OnBlendingStart;
         canvasRenderer = GetComponent<CanvasRenderer>();
         canvasRenderer.SetAlpha(0f);
     }

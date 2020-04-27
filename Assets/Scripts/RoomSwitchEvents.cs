@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Cinemachine;
 
-public class RoomSwitcher : MonoBehaviour
+public class RoomSwitchEvents : MonoBehaviour
 {
     #region Fields
 
