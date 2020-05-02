@@ -1,18 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerContextBubbles : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private GameObject contextBubble;
+    private bool inRange = false;
+
+
+    private void Start()
     {
-        
+        EventManager<SignEnterEventInfo>.RegisterListener(OnTriggerSignEnter);
+        EventManager<SignExitEventInfo>.RegisterListener(OnTriggerSignExit);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerSignEnter(SignEnterEventInfo eventInfo)
     {
-        
+        contextBubble.SetActive(true);
+        inRange = true;
     }
+
+    private void OnTriggerSignExit(SignExitEventInfo eventInfo)
+    {
+        contextBubble.SetActive(false);
+        inRange = false;
+    }
+
+
+    
+
 }

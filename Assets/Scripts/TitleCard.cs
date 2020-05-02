@@ -7,8 +7,7 @@ using UnityEngine.UI;
 public class TitleCard : MonoBehaviour
 {
     #region Fields
-
-    private GameObject Canvas;
+    private GameObject canvas;
     private TextMeshProUGUI text;
     CanvasRenderer canvasRenderer;
     private Coroutine coroutine;
@@ -16,23 +15,25 @@ public class TitleCard : MonoBehaviour
 
     private void Awake()
     {
-        Canvas = transform.parent.gameObject;
+        
+        canvas = transform.parent.gameObject;
         text = GetComponent<TextMeshProUGUI>();
-        RoomSwitchEvents.BlendingStartedEvent += OnBlendingStart;
         canvasRenderer = GetComponent<CanvasRenderer>();
         canvasRenderer.SetAlpha(0f);
+        EventManager<BlendingStartEventInfo>.RegisterListener(OnBlendingStart);
     }
 
     private void Start()
-    { 
-        coroutine = StartCoroutine(Show());
+    {
+            coroutine = StartCoroutine(Show());
     }
 
-    private void OnBlendingStart(Object obj)
+    private void OnBlendingStart(BlendingStartEventInfo eventInfo)
     {
-        CinemachineClearShot clearShot = (CinemachineClearShot)obj;
+        CinemachineClearShot clearShot = eventInfo.clearShot;
         text.SetText(clearShot.LiveChild.Name);
-        Canvas.SetActive(true);
+        canvas.SetActive(true);
+        gameObject.SetActive(true);
         if (coroutine != null)
         {
             StopCoroutine(coroutine);
@@ -53,6 +54,7 @@ public class TitleCard : MonoBehaviour
             canvasRenderer.SetAlpha(i);
             yield return new WaitForSeconds(0.1f);
         }
-        Canvas.SetActive(false);
+        gameObject.SetActive(false);
+        canvas.SetActive(false);
     }
 }

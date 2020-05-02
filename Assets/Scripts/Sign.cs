@@ -1,25 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
+//this script is attatched to whatever is triggering the event
 
 public class Sign : MonoBehaviour
 {
-    public UnityEvent triggerEvent;
-    // Start is called before the first frame update
+    //test script to invoke the some events
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        triggerEvent.Invoke();
+        EventManager<SignEnterEventInfo>.InvokeEvent(new SignEnterEventInfo() { signInfo = "This sign reads: Hi there!" });
     }
-    void Start()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        
+        EventManager<SignExitEventInfo>.InvokeEvent(new SignExitEventInfo());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
- 

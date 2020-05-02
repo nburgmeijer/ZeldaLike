@@ -1,46 +1,56 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     #region Fields
 
     [SerializeField] private int speed;
+    [SerializeField] private InputActionAsset playerControls;
     private Rigidbody2D playerRigidbody;
     private Animator animator;
     private Vector3 change;
     private bool canPlayerMove = true;
-
+    private InputAction move;
+    
     #endregion
     void Awake()
     {
+        move = playerControls.FindAction("Move");
         playerRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        RoomSwitchEvents.BlendingStartedEvent += OnBlendingStarted;
-        RoomSwitchEvents.BlendingEndedEvent += OnBlendingStopped;
+        EventManager<BlendingStartEventInfo>.RegisterListener(OnBlendingStart);
+        EventManager<BlendingEndEventInfo>.RegisterListener(OnBlendingEnd);
+        move.performed += OnMove;
+        move.canceled += OnMove;
     }
-
-    private void OnBlendingStarted(Object obj)
+    private void OnEnable()
+    {
+        move.Enable();
+    }
+    private void OnDisable()
+    {
+        move.Disable();
+    }
+    private void OnBlendingStart(BlendingStartEventInfo Eventinfo)
     {
         canPlayerMove = false;
     }
 
-    private void OnBlendingStopped(Object obj)
+    private void OnBlendingEnd(BlendingEndEventInfo Eventinfo)
     {
         canPlayerMove = true;
     }
-
-    private void Update()
+   
+    public void OnMove(InputAction.CallbackContext context)
     {
-        if(change != Vector3.zero)
-        {
-            change = Vector3.zero;
-        }
-        change.x = Input.GetAxisRaw("Horizontal");
-        change.y = Input.GetAxisRaw("Vertical");
+        print(context.ReadValue<Vector2>());
+        change = context.ReadValue<Vector2>();             
     }
 
     private void FixedUpdate()
     {
+
         if (animator.GetBool("Walking"))
         {
             animator.SetBool("Walking", false);
@@ -55,6 +65,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+
+    }
+
     private void UpdateAnimation()
     {
         animator.SetBool("Walking", true);
@@ -64,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        Vector2 newPosition = transform.position + change.normalized * speed * Time.fixedDeltaTime;
-        playerRigidbody.MovePosition(newPosition);  
+        Vector2 newPosition = transform.position + change * speed * Time.fixedDeltaTime;
+        playerRigidbody.MovePosition(newPosition);
     }
 }

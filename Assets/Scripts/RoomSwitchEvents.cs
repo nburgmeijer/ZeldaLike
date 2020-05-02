@@ -7,11 +7,12 @@ public class RoomSwitchEvents : MonoBehaviour
 
     private CinemachineClearShot clearShot;
     private bool InvokeOnceFlag = false;
-    public delegate void BlendingStarted(Object obj);
-    public static event BlendingStarted BlendingStartedEvent;
-    public delegate void BlendingEnded(Object obj);
-    public static event BlendingEnded BlendingEndedEvent;
-   
+
+    //public delegate void BlendingStarted(Object obj);
+    //public static event BlendingStarted BlendingStartedEvent;
+    //public delegate void BlendingEnded(Object obj);
+    //public static event BlendingEnded BlendingEndedEvent;
+
     #endregion
 
     private void Awake()
@@ -25,12 +26,12 @@ public class RoomSwitchEvents : MonoBehaviour
         if (clearShot.IsBlending && !InvokeOnceFlag)
         {
             InvokeOnceFlag = true;
-            BlendingStartedEvent?.Invoke(clearShot);
+            EventManager<BlendingStartEventInfo>.InvokeEvent(new BlendingStartEventInfo() { clearShot = clearShot }) ;
         }
         if(!clearShot.IsBlending && InvokeOnceFlag)
         {
             InvokeOnceFlag = false;
-            BlendingEndedEvent?.Invoke(clearShot);
+            EventManager<BlendingEndEventInfo>.InvokeEvent(new BlendingEndEventInfo() { clearShot = clearShot });
         }
     }
 }
