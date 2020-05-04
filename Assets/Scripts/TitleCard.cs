@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using Cinemachine;
 using TMPro;
 using UnityEngine;
@@ -19,7 +19,7 @@ public class TitleCard : MonoBehaviour
         text = GetComponent<TextMeshProUGUI>();
         canvasRenderer = GetComponent<CanvasRenderer>();
         canvasRenderer.SetAlpha(0f);
-        EventManager<BlendingStartEventInfo>.RegisterListener(OnBlendingStart);
+        EventManager<RoomSwitchEventInfo>.RegisterListener(OnBlendingStart);
     }
 
     private void Start()
@@ -27,7 +27,7 @@ public class TitleCard : MonoBehaviour
             coroutine = StartCoroutine(Show());
     }
 
-    private void OnBlendingStart(BlendingStartEventInfo eventInfo)
+    private void OnBlendingStart(RoomSwitchEventInfo eventInfo)
     {
         CinemachineClearShot clearShot = eventInfo.clearShot;
         text.SetText(clearShot.LiveChild.Name);
@@ -58,3 +58,4 @@ public class TitleCard : MonoBehaviour
         canvas.SetActive(false);
     }
 }
+*/

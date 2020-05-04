@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class UIElementsController : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class UIElementsController : MonoBehaviour
     private bool _inRange = false;
     private CanvasRenderer _titleCardRenderer;
     private GameObject _canvas;
-    private bool isCoroutineRunning = false;
+    private bool _isCoroutineRunning = false;
+    private Coroutine _coroutine;
 
     void Awake()
     {
@@ -27,15 +29,19 @@ public class UIElementsController : MonoBehaviour
         _dialogText = _dialog.GetComponentInChildren<TextMeshProUGUI>();
         EventManager<SignEnterEventInfo>.RegisterListener(OnTriggerSignEnter);
         EventManager<SignExitEventInfo>.RegisterListener(OnTriggerSignExit);
-        EventManager<BlendingStartEventInfo>.RegisterListener(OnRoomSwitch);
+        EventManager<RoomSwitchEventInfo>.RegisterListener(OnRoomSwitch);
     }
-    private void Start()
+
+    private void OnRoomSwitch(RoomSwitchEventInfo eventInfo)
     {
-        StartCoroutine(ShowTitleText());
-    }
-    private void OnRoomSwitch(BlendingStartEventInfo obj)
-    {
-       
+        _titleCardText.SetText(eventInfo.virtualCameraName);
+        _canvas.SetActive(true);
+        gameObject.SetActive(true);
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+        }
+        _coroutine = StartCoroutine(ShowTitleText());
     }
 
     private void OnEnable()
@@ -53,14 +59,11 @@ public class UIElementsController : MonoBehaviour
         else
         {
             _dialog.SetActive(false);
-            if (!isCoroutineRunning)
+            if (_coroutine == null)
             {
                 _canvas.SetActive(false);
             }
-        }
-       
-
-       
+        }  
     }
 
     private void OnTriggerSignEnter(SignEnterEventInfo eventInfo)
@@ -71,7 +74,7 @@ public class UIElementsController : MonoBehaviour
     private void OnTriggerSignExit(SignExitEventInfo eventInfo)
     {
         _dialog.SetActive(false);
-        if (!isCoroutineRunning)
+        if (_coroutine != null)
         {
             _canvas.SetActive(false);
         }
@@ -80,7 +83,7 @@ public class UIElementsController : MonoBehaviour
 
     IEnumerator ShowTitleText()
     {
-        isCoroutineRunning = true;
+       
         _canvas.SetActive(true);
         _titleCard.SetActive(true);
 
@@ -98,7 +101,7 @@ public class UIElementsController : MonoBehaviour
 
         _titleCard.SetActive(false);
         _canvas.SetActive(false);
-        isCoroutineRunning = false;
+        
     }
     // Update is called once per frame
     void Update()

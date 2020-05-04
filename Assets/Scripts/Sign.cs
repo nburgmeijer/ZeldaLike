@@ -3,15 +3,14 @@
 
 public class Sign : MonoBehaviour
 {
+    [SerializeField] private string _signText = "placeholder";
     //test script to invoke the some events
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        EventManager<SignEnterEventInfo>.InvokeEvent(new SignEnterEventInfo() { signInfo = "This sign reads: Hi there!" });
+        EventManager<SignEnterEventInfo>.InvokeEvent(new SignEnterEventInfo() { signInfo = _signText });
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         EventManager<SignExitEventInfo>.InvokeEvent(new SignExitEventInfo());
     }
-
-
 }

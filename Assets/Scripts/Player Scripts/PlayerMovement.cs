@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
         move = playerControls.FindAction("Move");
         playerRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        EventManager<BlendingStartEventInfo>.RegisterListener(OnBlendingStart);
+        EventManager<RoomSwitchEventInfo>.RegisterListener(OnRoomSwitch);
         EventManager<BlendingEndEventInfo>.RegisterListener(OnBlendingEnd);
         move.performed += OnMove;
         move.canceled += OnMove;
@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     {
         move.Disable();
     }
-    private void OnBlendingStart(BlendingStartEventInfo Eventinfo)
+    private void OnRoomSwitch(RoomSwitchEventInfo Eventinfo)
     {
         canPlayerMove = false;
     }
@@ -44,7 +44,6 @@ public class PlayerMovement : MonoBehaviour
    
     public void OnMove(InputAction.CallbackContext context)
     {
-        print(context.ReadValue<Vector2>());
         change = context.ReadValue<Vector2>();             
     }
 

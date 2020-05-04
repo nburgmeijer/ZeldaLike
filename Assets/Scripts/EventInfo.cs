@@ -14,12 +14,12 @@ public class SignExitEventInfo : EventInfo
 {
 }
 
-public class BlendingStartEventInfo : EventInfo
+public class RoomSwitchEventInfo : EventInfo
 {
-    public CinemachineClearShot clearShot;
+    public string virtualCameraName;
 }
 
 public class BlendingEndEventInfo : EventInfo
 {
-    public CinemachineClearShot clearShot;
+   
 }
