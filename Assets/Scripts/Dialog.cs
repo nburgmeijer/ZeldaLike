@@ -25,7 +25,6 @@ public class Dialog : MonoBehaviour
 
     private void OnInteract(InputAction.CallbackContext context)
     {
-        print("hi");
         if (inRange && !gameObject.activeSelf)
         {
             gameObject.SetActive(true);

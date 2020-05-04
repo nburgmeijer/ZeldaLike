@@ -15,7 +15,6 @@ public class TitleCard : MonoBehaviour
 
     private void Awake()
     {
-        
         canvas = transform.parent.gameObject;
         text = GetComponent<TextMeshProUGUI>();
         canvasRenderer = GetComponent<CanvasRenderer>();
@@ -54,6 +53,7 @@ public class TitleCard : MonoBehaviour
             canvasRenderer.SetAlpha(i);
             yield return new WaitForSeconds(0.1f);
         }
+        
         gameObject.SetActive(false);
         canvas.SetActive(false);
     }
