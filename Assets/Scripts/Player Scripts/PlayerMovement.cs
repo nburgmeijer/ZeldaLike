@@ -5,80 +5,86 @@ public class PlayerMovement : MonoBehaviour
 {
     #region Fields
 
-    [SerializeField] private int speed;
-    [SerializeField] private InputActionAsset playerControls;
-    private Rigidbody2D playerRigidbody;
-    private Animator animator;
-    private Vector3 change;
-    private bool canPlayerMove = true;
-    private InputAction move;
-    
+    [SerializeField] private int _speed;
+    private PlayerControls _playerControls;
+    private Rigidbody2D _playerRigidbody;
+    private Animator _animator;
+    private Vector3 _change;
+    private InputAction _move;
+    private PlayerManager _playerManager;
+
     #endregion
+
     void Awake()
     {
-        move = playerControls.FindAction("Move");
-        playerRigidbody = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        _playerManager = GetComponent<PlayerManager>();
+        _playerControls = new PlayerControls();
+        _move = _playerControls.PlayerControlsActionMap.Move;
+        _move.performed += OnMove;
+        _move.canceled += OnMove;
+        _playerRigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
         EventManager<RoomSwitchEventInfo>.RegisterListener(OnRoomSwitch);
         EventManager<BlendingEndEventInfo>.RegisterListener(OnBlendingEnd);
-        move.performed += OnMove;
-        move.canceled += OnMove;
     }
     private void OnEnable()
     {
-        move.Enable();
+        _move.Enable();
     }
     private void OnDisable()
     {
-        move.Disable();
+        _move.Disable();
     }
     private void OnRoomSwitch(RoomSwitchEventInfo Eventinfo)
     {
-        canPlayerMove = false;
+        _playerManager.CanMove = false;
     }
 
     private void OnBlendingEnd(BlendingEndEventInfo Eventinfo)
     {
-        canPlayerMove = true;
+        _playerManager.CanMove = true;
     }
    
     public void OnMove(InputAction.CallbackContext context)
     {
-        change = context.ReadValue<Vector2>();             
+        _change = context.ReadValue<Vector2>();             
     }
 
     private void FixedUpdate()
     {
 
-        if (animator.GetBool("Walking"))
+        if (_playerManager.CurrentState ==  State.WALKING)
         {
-            animator.SetBool("Walking", false);
+            _playerManager.CurrentState = State.IDLE;
+            _animator.SetBool("Walking", false);
         }
-        if (change != Vector3.zero)
+        if (_change != Vector3.zero)
         {
-            if (canPlayerMove)
+            if (_playerManager.CanMove)
             {
-                UpdateAnimation();
+                if(_playerManager.CurrentState != State.ATTACKING)
+                {
+                    _playerManager.CurrentState = State.WALKING;
+                    UpdateAnimation();
+                }
+               
                 MovePlayer();
             }
         }
     }
 
-    private void Update()
-    {
 
-    }
 
     private void UpdateAnimation()
     {
-        animator.SetBool("Walking", true);
-        animator.SetFloat("MoveX", change.x);
-        animator.SetFloat("MoveY", change.y);   
+        _animator.SetBool("Walking", true);
+        _animator.SetFloat("MoveX", _change.x);
+        _animator.SetFloat("MoveY", _change.y);   
     }
 
     private void MovePlayer()
     {
-        Vector2 newPosition = transform.position + change * speed * Time.fixedDeltaTime;
-        playerRigidbody.MovePosition(newPosition);
+        Vector2 newPosition = transform.position + _change * _speed * Time.fixedDeltaTime;
+        _playerRigidbody.MovePosition(newPosition);
     }
 }

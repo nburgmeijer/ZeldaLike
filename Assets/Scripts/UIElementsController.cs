@@ -6,11 +6,9 @@ using UnityEngine.InputSystem;
 using Cinemachine;
 
 public class UIElementsController : MonoBehaviour
-{
-    [SerializeField] private InputActionAsset playerControls;
+{ 
     [SerializeField] private GameObject _titleCard;
     [SerializeField] private GameObject _dialog;
-    private InputAction _interact;
     private TextMeshProUGUI _titleCardText;
     private TextMeshProUGUI _dialogText;
     private bool _inRange = false;
@@ -18,10 +16,13 @@ public class UIElementsController : MonoBehaviour
     private GameObject _canvas;
     private bool _isCoroutineRunning = false;
     private Coroutine _coroutine;
+    private PlayerControls _playerControls;
+    private InputAction _interact;
 
     void Awake()
     {
-        _interact = playerControls.FindAction("Interaction");
+        _playerControls = new PlayerControls();
+        _interact = _playerControls.PlayerControlsActionMap.Interaction;
         _interact.performed += Oninteract;
         _titleCardRenderer = _titleCard.GetComponentInChildren<CanvasRenderer>();
         _canvas = gameObject.transform.GetChild(0).gameObject;
@@ -47,6 +48,11 @@ public class UIElementsController : MonoBehaviour
     private void OnEnable()
     {
         _interact.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _interact.Disable();
     }
 
     private void Oninteract(InputAction.CallbackContext context)

@@ -2,7 +2,7 @@
     "name": "PlayerControls",
     "maps": [
         {
-            "name": "PlayerControls",
+            "name": "PlayerControlsActionMap",
             "id": "dd7655ce-f0e7-4ffa-adfc-1aa452dd6794",
             "actions": [
                 {
@@ -17,6 +17,14 @@
                     "name": "Interaction",
                     "type": "Button",
                     "id": "5f0a0043-86c7-46d3-86ec-a074b81b0a5b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "4fc662e0-0250-472c-86ac-6193050388b3",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -141,6 +149,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interaction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c77e57f0-c201-4d2d-8c7c-fabfbc0c2360",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
