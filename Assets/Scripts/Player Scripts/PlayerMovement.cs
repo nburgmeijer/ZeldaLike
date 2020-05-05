@@ -3,8 +3,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    #region Fields
-
     [SerializeField] private int _speed;
     private PlayerControls _playerControls;
     private Rigidbody2D _playerRigidbody;
@@ -12,8 +10,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _change;
     private InputAction _move;
     private PlayerManager _playerManager;
-
-    #endregion
 
     void Awake()
     {
@@ -31,10 +27,8 @@ public class PlayerMovement : MonoBehaviour
     {
         _move.Enable();
     }
-    private void OnDisable()
-    {
-        _move.Disable();
-    }
+
+
     private void OnRoomSwitch(RoomSwitchEventInfo Eventinfo)
     {
         _playerManager.CanMove = false;
@@ -62,18 +56,12 @@ public class PlayerMovement : MonoBehaviour
         {
             if (_playerManager.CanMove)
             {
-                if(_playerManager.CurrentState != State.ATTACKING)
-                {
-                    _playerManager.CurrentState = State.WALKING;
-                    UpdateAnimation();
-                }
-               
+                _playerManager.CurrentState = State.WALKING;
+                UpdateAnimation();
                 MovePlayer();
             }
         }
     }
-
-
 
     private void UpdateAnimation()
     {

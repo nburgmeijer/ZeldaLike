@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-
+//this class manages the opening of a door. Just set _canOpen in the inspector
+//This class will probably be refactored in an observer object
 public class Door : MonoBehaviour
 {
     [SerializeField] private bool _canOpen = false;
@@ -19,10 +20,10 @@ public class Door : MonoBehaviour
             {
                 _spriteRenderer.color = new Color(1, 1, 1, 0);
                 _boxCollider.isTrigger = true;
-                gameObject.SetActive(false);
             }
         }
     }
+
 
     private void OnTriggerExit2D(Collider2D other)
     {
@@ -30,7 +31,6 @@ public class Door : MonoBehaviour
         {
             _spriteRenderer.color = new Color(1, 1, 1, 1);
             _boxCollider.isTrigger = false;
-            gameObject.SetActive(true);
         }
     }
 }

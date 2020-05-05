@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Cinemachine;
 using UnityEngine;
-using Cinemachine;
 
 
 public class VirtualCamSwitch : MonoBehaviour
 {
-    private bool _isBlending;
+    private bool _isBlending = false;
     private CinemachineBrain _cinemachineBrain;
     private CinemachineClearShot _cinemachineClearShot;
 
@@ -20,8 +19,6 @@ public class VirtualCamSwitch : MonoBehaviour
         if (toCamera.GetType() != typeof(CinemachineClearShot))
         {
             EventManager<RoomSwitchEventInfo>.InvokeEvent(new RoomSwitchEventInfo() { virtualCameraName = toCamera.Name });
-            CinemachineVirtualCamera a = new CinemachineVirtualCamera();
-            
             _isBlending = true;
         }
         else

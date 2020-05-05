@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum State
 {
@@ -9,12 +7,13 @@ public enum State
     ATTACKING
 }
 
-public  class PlayerManager : MonoBehaviour
+//this class manages player states, and if its allowed to do certain things
+public class PlayerManager : MonoBehaviour
 {
-  
-    private State _currentState;
+    private State _currentState = State.IDLE;
     private State _lastState;
-    private bool _canMove;
+    private bool _canMove = true;
+
     public State States { get; set; }
 
     public State CurrentState
@@ -35,11 +34,10 @@ public  class PlayerManager : MonoBehaviour
         get { return _lastState; }
     }
 
-    public bool CanMove;
-
-    private void Awake()
+    public bool CanMove
     {
-        CurrentState = State.IDLE;
-        _canMove = true;
+        get { return _canMove; }
+        set { _canMove = value; }
     }
+
 }

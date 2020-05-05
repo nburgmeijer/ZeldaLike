@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Cinemachine;
 
 public class UIElementsController : MonoBehaviour
 { 
@@ -14,7 +12,6 @@ public class UIElementsController : MonoBehaviour
     private bool _inRange = false;
     private CanvasRenderer _titleCardRenderer;
     private GameObject _canvas;
-    
     private Coroutine _coroutine;
     private PlayerControls _playerControls;
     private InputAction _interact;
@@ -48,6 +45,7 @@ public class UIElementsController : MonoBehaviour
     private void OnEnable()
     {
         _interact.Enable();
+        _coroutine = StartCoroutine(ShowTitleText());
     }
 
     private void OnDisable()

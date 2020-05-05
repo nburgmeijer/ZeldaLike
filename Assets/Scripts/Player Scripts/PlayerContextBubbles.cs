@@ -5,7 +5,6 @@ public class PlayerContextBubbles : MonoBehaviour
     [SerializeField] private GameObject _contextBubble;
     private bool _inRange = false;
 
-
     private void Awake()
     {
         EventManager<SignEnterEventInfo>.RegisterListener(OnTriggerSignEnter);

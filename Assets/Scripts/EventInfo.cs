@@ -1,6 +1,4 @@
-﻿using Cinemachine;
-
-public abstract class EventInfo
+﻿public abstract class EventInfo
 {
     public string EventDescription;
 }

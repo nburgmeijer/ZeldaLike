@@ -1,11 +1,9 @@
-﻿using UnityEngine.InputSystem;
+﻿using System.Collections;
 using UnityEngine;
-using System;
-using System.Collections;
+using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
-
     private PlayerControls _playerControls;
     private InputAction _attack;
     private PlayerManager _playerManager;
@@ -18,7 +16,6 @@ public class PlayerAttack : MonoBehaviour
         _playerControls = new PlayerControls();
         _attack = _playerControls.PlayerControlsActionMap.Attack;
         _attack.performed += OnAttack;
-       
     }
     private void OnEnable()
     {
@@ -37,7 +34,6 @@ public class PlayerAttack : MonoBehaviour
     private IEnumerator AttackCo()
     {
         _attack.Disable();
-        
         _playerManager.CurrentState = State.ATTACKING;
         _animator.SetBool("Attacking", true); 
         yield return new WaitForSeconds(0.2f);
