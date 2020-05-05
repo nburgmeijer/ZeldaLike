@@ -14,7 +14,7 @@ public class UIElementsController : MonoBehaviour
     private bool _inRange = false;
     private CanvasRenderer _titleCardRenderer;
     private GameObject _canvas;
-    private bool _isCoroutineRunning = false;
+    
     private Coroutine _coroutine;
     private PlayerControls _playerControls;
     private InputAction _interact;
@@ -80,7 +80,7 @@ public class UIElementsController : MonoBehaviour
     private void OnTriggerSignExit(SignExitEventInfo eventInfo)
     {
         _dialog.SetActive(false);
-        if (_coroutine != null)
+        if (_coroutine == null)
         {
             _canvas.SetActive(false);
         }
@@ -89,7 +89,6 @@ public class UIElementsController : MonoBehaviour
 
     IEnumerator ShowTitleText()
     {
-       
         _canvas.SetActive(true);
         _titleCard.SetActive(true);
 
@@ -106,12 +105,6 @@ public class UIElementsController : MonoBehaviour
         }
 
         _titleCard.SetActive(false);
-        _canvas.SetActive(false);
-        
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _canvas.SetActive(false);   
     }
 }

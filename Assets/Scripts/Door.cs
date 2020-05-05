@@ -2,23 +2,24 @@
 
 public class Door : MonoBehaviour
 {
-    [SerializeField] private bool canOpen = false;
-    private SpriteRenderer spriteRenderer;
-    private BoxCollider2D boxCollider;
+    [SerializeField] private bool _canOpen = false;
+    private SpriteRenderer _spriteRenderer;
+    private BoxCollider2D _boxCollider;
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _boxCollider = GetComponent<BoxCollider2D>();
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.transform.CompareTag("Player"))
         {
-            if (canOpen)
+            if (_canOpen)
             {
-                spriteRenderer.color = new Color(1, 1, 1, 0);
-                boxCollider.isTrigger = true;
+                _spriteRenderer.color = new Color(1, 1, 1, 0);
+                _boxCollider.isTrigger = true;
+                gameObject.SetActive(false);
             }
         }
     }
@@ -27,8 +28,9 @@ public class Door : MonoBehaviour
     {
         if (other.transform.CompareTag("Player"))
         {
-            spriteRenderer.color = new Color(1, 1, 1, 1);
-            boxCollider.isTrigger = false;
+            _spriteRenderer.color = new Color(1, 1, 1, 1);
+            _boxCollider.isTrigger = false;
+            gameObject.SetActive(true);
         }
     }
 }

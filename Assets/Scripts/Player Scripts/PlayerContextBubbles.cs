@@ -2,12 +2,11 @@
 
 public class PlayerContextBubbles : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject contextBubble;
-    private bool inRange = false;
+    [SerializeField] private GameObject _contextBubble;
+    private bool _inRange = false;
 
 
-    private void Start()
+    private void Awake()
     {
         EventManager<SignEnterEventInfo>.RegisterListener(OnTriggerSignEnter);
         EventManager<SignExitEventInfo>.RegisterListener(OnTriggerSignExit);
@@ -15,14 +14,14 @@ public class PlayerContextBubbles : MonoBehaviour
 
     private void OnTriggerSignEnter(SignEnterEventInfo eventInfo)
     {
-        contextBubble.SetActive(true);
-        inRange = true;
+        _contextBubble.SetActive(true);
+        _inRange = true;
     }
 
     private void OnTriggerSignExit(SignExitEventInfo eventInfo)
     {
-        contextBubble.SetActive(false);
-        inRange = false;
+        _contextBubble.SetActive(false);
+        _inRange = false;
     }
 
 

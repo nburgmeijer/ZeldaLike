@@ -21,5 +21,4 @@ public class RoomSwitchEventInfo : EventInfo
 
 public class BlendingEndEventInfo : EventInfo
 {
-   
 }

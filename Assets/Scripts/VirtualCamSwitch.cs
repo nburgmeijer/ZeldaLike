@@ -33,10 +33,8 @@ public class VirtualCamSwitch : MonoBehaviour
     {
         if(_isBlending && !_cinemachineClearShot.IsBlending)
         {
-           
                 EventManager<BlendingEndEventInfo>.InvokeEvent(new BlendingEndEventInfo());
-                _isBlending = false;
-            
+                _isBlending = false;   
         }
     }
 }
