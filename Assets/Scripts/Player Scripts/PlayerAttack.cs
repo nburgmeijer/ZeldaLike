@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class PlayerAttack : MonoBehaviour
 {
     private PlayerControls _playerControls;
@@ -34,12 +35,15 @@ public class PlayerAttack : MonoBehaviour
     private IEnumerator AttackCo()
     {
         _attack.Disable();
-        _playerManager.CurrentState = State.ATTACKING;
-        _animator.SetBool("Attacking", true); 
-        yield return new WaitForSeconds(0.2f);
+        _animator.SetBool("Attacking", true);
+        yield return null;
+        _playerManager.CurrentState = State.ATTACKING;  
+        yield return new WaitForSeconds(0.14f);
         _animator.SetBool("Attacking", false);
         _playerManager.CurrentState = _playerManager.LastState;
-        _playerManager.CanMove = true;
+        yield return new WaitForSeconds(0.2f);
         _attack.Enable();
     }
+
+
 }
