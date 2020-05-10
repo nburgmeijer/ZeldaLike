@@ -44,7 +44,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 568f709130cb9402fa5d13611d321921, type: 3}
-    totalSpriteSurfaceArea: 1018304
+    totalSpriteSurfaceArea: 1017280
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -379,7 +379,29 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 67c01bb5c0e6d4260920e3fdf954ccff, type: 3}
   - {fileID: 21300000, guid: 0269180680e514ddb8466e59952f6737, type: 3}
   - {fileID: 21300000, guid: 6cc32f762666b4370bdada0219af8b05, type: 3}
-  - {fileID: 21300000, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: 3059174765694063163, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: -34017176892466219, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: 2376815873980901129, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: -1512028583440225198, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: -5034061168752090764, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: -8771329076928401280, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: -451413936476517383, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: 8458950633466780684, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: 8213902188476598959, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: -22439546833456996, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: -2570500000468905864, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: -5690133823277906687, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: -6457386710923275188, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: 8498479158080882289, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: 2703527186074568732, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: 681774289175886536, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: -822619953307990688, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: 3107883342233372815, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: -3791062316690792145, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: -128083769461270964, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: -2086765476746818828, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: 5566842953363755866, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
+  - {fileID: -7445369939883215787, guid: 264b64966ee6b4803a61d18ee0ad3078, type: 3}
   - {fileID: 21300000, guid: 62bded68b877245f6bb9584ce2df2f19, type: 3}
   - {fileID: 21300000, guid: 21a8ba19a5d8046f89f43b06f6b29ab3, type: 3}
   - {fileID: 1589820876085740378, guid: 7e83ffe9eab542445912415dd168f10e, type: 3}
@@ -1881,7 +1903,29 @@ SpriteAtlas:
   - Inner
   - House_Front
   - fountain3
-  - log
+  - log_8
+  - log_9
+  - log_2
+  - log_3
+  - log_0
+  - log_1
+  - log_6
+  - log_7
+  - log_4
+  - log_5
+  - log_11
+  - log_10
+  - log_13
+  - log_12
+  - log_15
+  - log_14
+  - log_17
+  - log_16
+  - log_19
+  - log_18
+  - log_20
+  - log_21
+  - log_22
   - fountain2
   - blacksquare
   - CharacterAttack_10
