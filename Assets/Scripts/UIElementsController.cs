@@ -18,6 +18,7 @@ public class UIElementsController : MonoBehaviour
 
     void Awake()
     {
+        Cursor.visible = false;
         _playerControls = new PlayerControls();
         _interact = _playerControls.PlayerControlsActionMap.Interaction;
         _interact.performed += Oninteract;

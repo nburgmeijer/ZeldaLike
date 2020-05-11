@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyIdleState : MonoBehaviour
+public class EnemyIdleState : IEnemyState
 {
-    // Start is called before the first frame update
-    void Start()
+    public void EnterState(LogController enemy)
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnCollisionEnter(LogController enemy, Collision2D collision)
     {
-        
+      
+    }
+
+    public void Update(LogController enemy)
+    {
+       
     }
 }
