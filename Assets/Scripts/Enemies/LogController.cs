@@ -13,7 +13,7 @@ public class LogController : MonoBehaviour
     private Animator _logAnimator;
     private Rigidbody2D _logRigidBody;
     private Rigidbody2D _targetRigidBody;
-    private PlayerManager _playerManager;
+    private PlayerController _playerController;
 
     public readonly EnemyIdleState IdleState = new EnemyIdleState();
     public readonly LogSleepState SleepState = new LogSleepState();
@@ -28,7 +28,7 @@ public class LogController : MonoBehaviour
     public float AttackRadius { get => _attackRadius; }
     public Rigidbody2D TargetRigidBody { get => _targetRigidBody;}
     public float Thrust { get => _thrust; }
-    public PlayerManager PlayerManager { get => _playerManager; }
+    public PlayerController PlayerController { get => _playerController; }
 
     private void Awake()
     {
@@ -36,7 +36,7 @@ public class LogController : MonoBehaviour
         _logRigidBody = GetComponent<Rigidbody2D>();
         _target = GameObject.FindWithTag("Player").transform;
         _targetRigidBody = _target.GetComponent<Rigidbody2D>();
-        _playerManager = _target.GetComponent<PlayerManager>();
+        _playerController = _target.GetComponent<PlayerController>();
     }
     void Start()
     {

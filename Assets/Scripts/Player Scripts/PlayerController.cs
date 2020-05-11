@@ -35,6 +35,18 @@ public class PlayerController : MonoBehaviour
         _moveAction.Enable();
         IdleState = new PlayerIdleState();
         MoveState = new PlayerMoveState();
+        EventManager<RoomSwitchEventInfo>.RegisterListener(OnRoomSwitch);
+        EventManager<BlendingEndEventInfo>.RegisterListener(OnBlendingEnd);
+    }
+
+    private void OnRoomSwitch(RoomSwitchEventInfo Eventinfo)
+    {
+        _canMove = false;
+    }
+
+    private void OnBlendingEnd(BlendingEndEventInfo Eventinfo)
+    {
+        _canMove = true;
     }
 
     private void OnEndMove(InputAction.CallbackContext context)
