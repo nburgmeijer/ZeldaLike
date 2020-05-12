@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 //this class manages the opening of a door. Just set _canOpen in the inspector
 //This class will probably be refactored in an observer object
+
 public class Door : MonoBehaviour
 {
     [SerializeField] private bool _canOpen = false;

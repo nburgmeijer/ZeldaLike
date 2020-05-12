@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 
-public class LogChaseState : IEnemyState
+public class LogChaseState : EnemyStateBase
 {
-    public void EnterState(LogController enemy)
+    public override void EnterState(LogController enemy)
     {
         enemy.LogAnimator.SetBool("WakeUp", true);
     }
 
-    public void OnCollisionEnter(LogController enemy, Collision2D collision)
+    public override void OnCollisionEnter(LogController enemy, Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -15,14 +15,14 @@ public class LogChaseState : IEnemyState
         }
     }
 
-    public void Update(LogController enemy)
+    public override void FixedUpdate(LogController enemy)
     {
         if (!enemy.LogAnimator.GetCurrentAnimatorStateInfo(0).IsName("LogWaking")) 
         {
             Vector2 direction = (enemy.Target.transform.position - enemy.transform.position).normalized;
             enemy.LogAnimator.SetFloat("MoveX", direction.x);
             enemy.LogAnimator.SetFloat("MoveY", direction.y);
-            enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, enemy.Target.position, enemy.MoveSpeed * Time.fixedDeltaTime);
+            enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, new Vector3(enemy.Target.position.x, enemy.Target.position.y, enemy.transform.position.z), enemy.MoveSpeed * Time.fixedDeltaTime);
         }
  
         if (Vector3.Distance(enemy.Target.position, enemy.transform.position) >= enemy.ChaseRadius)

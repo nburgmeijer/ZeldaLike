@@ -8,14 +8,13 @@ public class LogController : MonoBehaviour
     [SerializeField] private float _thrust;
 
     private Transform _target;
-    private IEnemyState _currentState;
-    private IEnemyState _lastState;
+    private EnemyStateBase _currentState;
+    private EnemyStateBase _lastState;
     private Animator _logAnimator;
     private Rigidbody2D _logRigidBody;
     private Rigidbody2D _targetRigidBody;
     private PlayerController _playerController;
 
-    public readonly EnemyIdleState IdleState = new EnemyIdleState();
     public readonly LogSleepState SleepState = new LogSleepState();
     public readonly LogChaseState ChaseState = new LogChaseState();
     public readonly LogAttackState AttackState = new LogAttackState();
@@ -45,7 +44,7 @@ public class LogController : MonoBehaviour
 
     void FixedUpdate()
     {
-        _currentState.Update(this);
+        _currentState.FixedUpdate(this);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -53,7 +52,7 @@ public class LogController : MonoBehaviour
         _currentState.OnCollisionEnter(this, collision);
     }
 
-    public void TransitionToState(IEnemyState state) 
+    public void TransitionToState(EnemyStateBase state) 
     {
         _lastState = _currentState;
         _currentState = state;

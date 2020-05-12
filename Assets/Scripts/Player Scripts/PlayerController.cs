@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed;
+    [SerializeField] private GameObject _swordDown; 
 
     #region Fields
     private PlayerStateBase _currentState;
@@ -13,9 +14,12 @@ public class PlayerController : MonoBehaviour
     private Animator _playerAnimator;
     private Rigidbody2D _playerRigidBody;
     private PlayerControls _playerControls;
+    private Collider2D _swordDownCollider;
+
+    private Coroutine _coroutine;
     private bool _canMove = true;
     private Vector2 _change;
-    private Coroutine _coroutine;
+    
     #endregion
 
     public readonly PlayerIdleState IdleState = new PlayerIdleState();
@@ -30,10 +34,13 @@ public class PlayerController : MonoBehaviour
     public Vector3 Change { get => _change; set => _change = value; }
     public PlayerControls PlayerControls { get => _playerControls; }
     public PlayerStateBase LastState { get => _lastState; }
+    public Collider2D SwordDownCollider { get => _swordDownCollider; }
     #endregion
 
     private void Awake()
     {
+        _swordDownCollider = _swordDown.GetComponent<Collider2D>();
+
         _playerAnimator = GetComponent<Animator>();
         _playerRigidBody = GetComponent<Rigidbody2D>();
         _playerControls = new PlayerControls();
@@ -47,6 +54,8 @@ public class PlayerController : MonoBehaviour
 
         EventManager<RoomSwitchEventInfo>.RegisterListener(OnRoomSwitch);
         EventManager<BlendingEndEventInfo>.RegisterListener(OnBlendingEnd);
+
+        
     }
 
     void Start()
@@ -55,10 +64,10 @@ public class PlayerController : MonoBehaviour
         TransitionToState(IdleState);    
     }
 
-    private void Update()
-    {   
-        _currentState.Update(this);
-    }
+    //private void Update()
+    //{   
+    //    _currentState.Update(this);
+    //}
 
     void FixedUpdate()
     {
