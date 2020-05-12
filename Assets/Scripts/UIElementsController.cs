@@ -7,23 +7,22 @@ public class UIElementsController : MonoBehaviour
 { 
     [SerializeField] private GameObject _titleCard;
     [SerializeField] private GameObject _dialog;
+    [SerializeField] private GameObject _canvas;
     private TextMeshProUGUI _titleCardText;
     private TextMeshProUGUI _dialogText;
     private bool _inRange = false;
     private CanvasRenderer _titleCardRenderer;
-    private GameObject _canvas;
     private Coroutine _coroutine;
     private PlayerControls _playerControls;
     private InputAction _interact;
 
     void Awake()
     {
-        Cursor.visible = false;
+        //Cursor.visible = false;
         _playerControls = new PlayerControls();
         _interact = _playerControls.PlayerControlsActionMap.Interaction;
         _interact.performed += Oninteract;
         _titleCardRenderer = _titleCard.GetComponentInChildren<CanvasRenderer>();
-        _canvas = gameObject.transform.GetChild(0).gameObject;
         _titleCardText = _titleCard.GetComponentInChildren<TextMeshProUGUI>();
         _dialogText = _dialog.GetComponentInChildren<TextMeshProUGUI>();
         EventManager<SignEnterEventInfo>.RegisterListener(OnTriggerSignEnter);

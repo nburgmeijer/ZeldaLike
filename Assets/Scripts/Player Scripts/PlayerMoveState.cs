@@ -1,32 +1,20 @@
 ﻿using UnityEngine;
 
-public class PlayerMoveState : IPlayerState
+public class PlayerMoveState : PlayerStateBase
 {
-
-    public void EnterState(PlayerController player)
-    { 
-  
+    public override void EnterState(PlayerController player)
+    {
+        player.PlayerAnimator.SetBool("Walking", true);
     }
 
-    public void FixedUpdate(PlayerController player)
+    public override void FixedUpdate(PlayerController player)
     {
         if (player.CanMove)
         {
-            player.PlayerAnimator.SetBool("Walking", true);
             player.PlayerAnimator.SetFloat("MoveX", player.Change.x);    
             player.PlayerAnimator.SetFloat("MoveY", player.Change.y);
             Vector2 newPosition = player.transform.position + player.Change * player.MoveSpeed * Time.fixedDeltaTime;
             player.PlayerRigidBody.MovePosition(newPosition);
         }
-    }
-
-    public void OnCollisionEnter(PlayerController player, Collision2D collision)
-    {
-       
-    }
-
-    public void Update(PlayerController player)
-    {
-        
     }
 }

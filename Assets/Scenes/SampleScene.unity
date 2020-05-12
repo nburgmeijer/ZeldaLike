@@ -9453,6 +9453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _titleCard: {fileID: 192035184}
   _dialog: {fileID: 664230213}
+  _canvas: {fileID: 1176904464}
 --- !u!4 &804178257
 Transform:
   m_ObjectHideFlags: 0
