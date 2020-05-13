@@ -52,6 +52,11 @@ public class LogController : MonoBehaviour
         _currentState.OnCollisionEnter(this, collision);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        _currentState.OnEnterTriggerEnter(this, collision);
+    }
+
     public void TransitionToState(EnemyStateBase state) 
     {
         _lastState = _currentState;

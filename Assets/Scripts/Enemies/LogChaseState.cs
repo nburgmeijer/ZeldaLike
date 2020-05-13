@@ -15,6 +15,14 @@ public class LogChaseState : EnemyStateBase
         }
     }
 
+    //public override void OnEnterTriggerEnter(LogController enemy, Collider2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("HurtfulOther"))
+    //    {
+    //        Debug.Log(collision);
+    //    }
+    //}
+
     public override void FixedUpdate(LogController enemy)
     {
         if (!enemy.LogAnimator.GetCurrentAnimatorStateInfo(0).IsName("LogWaking")) 

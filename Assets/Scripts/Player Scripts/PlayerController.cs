@@ -79,6 +79,11 @@ public class PlayerController : MonoBehaviour
         _currentState.OnCollisionEnter(this, collision);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        _currentState.OnTriggerEnter(this, collision);
+    }
+
     public void TransitionToState(PlayerStateBase state)
     {
         _lastState = _currentState;
