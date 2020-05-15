@@ -18,6 +18,7 @@ public class LogController : MonoBehaviour
     public readonly LogSleepState SleepState = new LogSleepState();
     public readonly LogChaseState ChaseState = new LogChaseState();
     public readonly LogAttackState AttackState = new LogAttackState();
+    public readonly LogHurtState HurtState = new LogHurtState();
 
     public Animator LogAnimator { get => _logAnimator;}
     public Rigidbody2D LogRigidBody { get => _logRigidBody; }
@@ -28,6 +29,7 @@ public class LogController : MonoBehaviour
     public Rigidbody2D TargetRigidBody { get => _targetRigidBody;}
     public float Thrust { get => _thrust; }
     public PlayerController PlayerController { get => _playerController; }
+    public EnemyStateBase LastState { get => _lastState;}
 
     private void Awake()
     {

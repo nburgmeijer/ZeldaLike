@@ -11,7 +11,7 @@ public class LogAttackState : EnemyStateBase
         difference = difference.normalized * enemy.Thrust;
         enemy.TargetRigidBody.DOMove(new Vector2(enemy.Target.position.x, enemy.Target.position.y) + difference, 0.3f).OnComplete(() => 
             {
-                enemy.TransitionToState(enemy.ChaseState);
+                enemy.TransitionToState(enemy.LastState);
                 enemy.PlayerController.CanMove = true;
             });
     }
