@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed;
-    [SerializeField] private GameObject _swordDown; 
+    [SerializeField] private float _swordDamage;
+
 
     #region Fields
     private PlayerStateBase _currentState;
@@ -35,12 +36,11 @@ public class PlayerController : MonoBehaviour
     public PlayerControls PlayerControls { get => _playerControls; }
     public PlayerStateBase LastState { get => _lastState; }
     public Collider2D SwordDownCollider { get => _swordDownCollider; }
+    public float SwordDamage { get => _swordDamage; }
     #endregion
 
     private void Awake()
     {
-        _swordDownCollider = _swordDown.GetComponent<Collider2D>();
-
         _playerAnimator = GetComponent<Animator>();
         _playerRigidBody = GetComponent<Rigidbody2D>();
         _playerControls = new PlayerControls();
@@ -125,7 +125,6 @@ public class PlayerController : MonoBehaviour
     {
         _change = Vector2.zero;
          TransitionToState(IdleState);
-
     }
         
     #endregion

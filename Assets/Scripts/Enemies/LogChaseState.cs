@@ -19,6 +19,7 @@ public class LogChaseState : EnemyStateBase
     {
         if (collision.gameObject.CompareTag("HurtfulOther"))
         {
+            enemy.CurrentHealth -= enemy.PlayerController.SwordDamage;
             enemy.TransitionToState(enemy.HurtState); 
         }
     }
@@ -30,10 +31,10 @@ public class LogChaseState : EnemyStateBase
             Vector2 direction = (enemy.Target.transform.position - enemy.transform.position).normalized;
             enemy.LogAnimator.SetFloat("MoveX", direction.x);
             enemy.LogAnimator.SetFloat("MoveY", direction.y);
-            enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, new Vector3(enemy.Target.position.x, enemy.Target.position.y, enemy.transform.position.z), enemy.MoveSpeed * Time.fixedDeltaTime);
+            enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, new Vector3(enemy.Target.position.x, enemy.Target.position.y, enemy.transform.position.z), enemy.LogStats.MoveSpeed * Time.fixedDeltaTime);
         }
  
-        if (Vector3.Distance(enemy.Target.position, enemy.transform.position) >= enemy.ChaseRadius)
+        if (Vector3.Distance(enemy.Target.position, enemy.transform.position) >= enemy.LogStats.ChaseRadius)
         {
             enemy.TransitionToState(enemy.SleepState);
         }

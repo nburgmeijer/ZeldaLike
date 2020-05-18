@@ -305,10 +305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f0ebd942fe245f4a7a8c0df904ce0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chaseRadius: 4
-  _attackRadius: 1
-  _moveSpeed: 2
   _thrust: 1
+  _logStats: {fileID: 11400000, guid: f8ebd2ce5a4bf4618a591333f6813b4f, type: 2}
 --- !u!61 &42993240
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31802,7 +31800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 4
-  _swordDown: {fileID: 1619474402}
+  _swordDamage: 1
 --- !u!1 &2129587163
 GameObject:
   m_ObjectHideFlags: 3

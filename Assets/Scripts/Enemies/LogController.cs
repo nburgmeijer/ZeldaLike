@@ -2,11 +2,8 @@
 
 public class LogController : MonoBehaviour
 {
-    [SerializeField] private float _chaseRadius;
-    [SerializeField] private float _attackRadius;
-    [SerializeField] private float _moveSpeed;
     [SerializeField] private float _thrust;
-
+    [SerializeField] private EnemyStats _logStats;
     private Transform _target;
     private EnemyStateBase _currentState;
     private EnemyStateBase _lastState;
@@ -14,6 +11,7 @@ public class LogController : MonoBehaviour
     private Rigidbody2D _logRigidBody;
     private Rigidbody2D _targetRigidBody;
     private PlayerController _playerController;
+    private float _currentHealth;
 
     public readonly LogSleepState SleepState = new LogSleepState();
     public readonly LogChaseState ChaseState = new LogChaseState();
@@ -23,16 +21,16 @@ public class LogController : MonoBehaviour
     public Animator LogAnimator { get => _logAnimator;}
     public Rigidbody2D LogRigidBody { get => _logRigidBody; }
     public Transform Target { get => _target; }
-    public float ChaseRadius { get => _chaseRadius; }
-    public float MoveSpeed { get => _moveSpeed; }
-    public float AttackRadius { get => _attackRadius; }
     public Rigidbody2D TargetRigidBody { get => _targetRigidBody;}
     public float Thrust { get => _thrust; }
     public PlayerController PlayerController { get => _playerController; }
     public EnemyStateBase LastState { get => _lastState;}
+    public EnemyStats LogStats { get => _logStats; }
+    public float CurrentHealth { get => _currentHealth; set => _currentHealth = value; }
 
     private void Awake()
     {
+        CurrentHealth = LogStats.MaxHealth;
         _logAnimator = GetComponent<Animator>();
         _logRigidBody = GetComponent<Rigidbody2D>();
         _target = GameObject.FindWithTag("Player").transform;
@@ -46,6 +44,10 @@ public class LogController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(_currentHealth <= 0)
+        {
+            gameObject.SetActive(false);
+        }
         _currentState.FixedUpdate(this);
     }
 
